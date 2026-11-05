@@ -134,10 +134,10 @@ class Reader(fk.Reader):
     def stream(self, data: fk.FileData, extras: dict[str, Any]) -> Iterable[bytes]:
         location = self.storage.full_path(data.location)
 
-        try:
-            content = self.storage.settings.operator.open(location, "rb")
-        except opendal.exceptions.NotFound as err:
-            raise fk.exc.MissingFileError(self.storage, data.location) from err
+        if not self.storage.exists(data):
+            raise fk.exc.MissingFileError(self.storage, data.location)
+
+        content = self.storage.settings.operator.open(location, "rb")
 
         return FileStream(content)
 
