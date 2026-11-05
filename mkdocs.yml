@@ -1,6 +1,6 @@
 site_name: file-keeper
-site_url: https://datashades.github.io/file-keeper/
-repo_url:  https://github.com/DataShades/file-keeper
+site_url: https://ckan.github.io/file-keeper/
+repo_url:  https://github.com/ckan/file-keeper
 
 markdown_extensions:
   - abbr

@@ -1,288 +1,300 @@
 
-## [v0.3.0](https://github.com/DataShades/file-keeper/releases/tag/v0.3.0) - 2026-10-27
-[Compare with v0.2.6](https://github.com/DataShades/file-keeper/compare/v0.2.6..v0.3.0)
+## [v0.3.1](https://github.com/ckan/file-keeper/releases/tag/v0.3.1) - 2026-11-05
+[Compare with v0.3.0](https://github.com/ckan/file-keeper/compare/v0.3.0..v0.3.1)
 
 ### 🚀 Features
 
-- implement RANGE capability for FS adapter ([d515ca1](https://github.com/DataShades/file-keeper/commit/d515ca1f8d2369517d4de92839e6d85d964c43b2))
-- implement RANGE capability for S3 adapter ([1fd4f85](https://github.com/DataShades/file-keeper/commit/1fd4f8521434878d8c0e0d3fe2989eaf5bafdf24))
-
-### 🐛 Bug Fixes
-
-- S3 adapter fails to move or copy big files(>5GB) ([38f164c](https://github.com/DataShades/file-keeper/commit/38f164c6e78fc5ffbc227eea85e1cc093d28a050))
+- S3 adapter exposes multipart_threshold option (8MB default) to configure when upload/copy switch to multipart mode ([b69207e](https://github.com/ckan/file-keeper/commit/b69207e146ae8df484e49992ce7d771b1d178c91))
+- S3 adapter supports CRC32 hashing_algorithm; if botocore[crt] installed, CRC32C and CRC64NVME are also available ([0102a5f](https://github.com/ckan/file-keeper/commit/0102a5f8725fe5a258d9b329a5521f2002c80c9a))
 
 ### 🚜 Refactor
 
-- S3 adapter uses HEAD request instead of GET to retrieve file details ([a8b7d98](https://github.com/DataShades/file-keeper/commit/a8b7d98cfb52611a89940b54acdebcbe7b5fd27e))
-- S3 adapter supports big file uploads(>5GB) without multipart ([1a2b32c](https://github.com/DataShades/file-keeper/commit/1a2b32c969e32c90ad9b50e8f2d53c229c9f54e6))
-- IterableBytesReader delegates read to underlying BufferedReader when possible ([84ca69f](https://github.com/DataShades/file-keeper/commit/84ca69f619cb948e74216300bfcd4c8fed3429fd))
+- use HEAD instead of GET to check file existence ([b3c9e57](https://github.com/ckan/file-keeper/commit/b3c9e5716bd5fd594f86e85d8f1e18e4f898db6f))
 
-## [v0.2.6](https://github.com/DataShades/file-keeper/releases/tag/v0.2.6) - 2026-08-25
-[Compare with v0.2.5](https://github.com/DataShades/file-keeper/compare/v0.2.5..v0.2.6)
+## [v0.3.0](https://github.com/ckan/file-keeper/releases/tag/v0.3.0) - 2026-10-27
+[Compare with v0.2.6](https://github.com/ckan/file-keeper/compare/v0.2.6..v0.3.0)
 
 ### 🚀 Features
 
-- add follow_symlinks option to fs adapter ([d0d3ac2](https://github.com/DataShades/file-keeper/commit/d0d3ac222fb65c7d49cbfc900c8fcf2583153cec))
-
-## [v0.2.5](https://github.com/DataShades/file-keeper/releases/tag/v0.2.5) - 2026-08-25
-[Compare with v0.2.4](https://github.com/DataShades/file-keeper/compare/v0.2.4..v0.2.5)
+- implement RANGE capability for FS adapter ([d515ca1](https://github.com/ckan/file-keeper/commit/d515ca1f8d2369517d4de92839e6d85d964c43b2))
+- implement RANGE capability for S3 adapter ([1fd4f85](https://github.com/ckan/file-keeper/commit/1fd4f8521434878d8c0e0d3fe2989eaf5bafdf24))
 
 ### 🐛 Bug Fixes
 
-- do not allow accessing files by common prefix, like `folder_evil` for path `folder` ([49ad341](https://github.com/DataShades/file-keeper/commit/49ad341c8b426fd6ecbc0db3f7149d7cc86be98c))
-
-## [v0.2.4](https://github.com/DataShades/file-keeper/releases/tag/v0.2.4) - 2026-05-14
-[Compare with v0.2.3](https://github.com/DataShades/file-keeper/compare/v0.2.3..v0.2.4)
-
-### 🚀 Features
-
-- s3 storage accepts `config` option for botocore.config.Config ([95100e5](https://github.com/DataShades/file-keeper/commit/95100e5eaed3a70fd4a85a11c48ff2095e8397c9))
-
-## [v0.2.3](https://github.com/DataShades/file-keeper/releases/tag/v0.2.3) - 2026-05-13
-[Compare with v0.2.2](https://github.com/DataShades/file-keeper/compare/v0.2.2..v0.2.3)
-
-### 🚀 Features
-
-- make_upload accepts optional mime parameter ([feb716e](https://github.com/DataShades/file-keeper/commit/feb716e9972eb69020378e18806ced48641a5eb6))
-
-### 🐛 Bug Fixes
-
-- temporary_link duplicates storage path ([33d0a67](https://github.com/DataShades/file-keeper/commit/33d0a67e13a8e9aaaa048bc770b307d5c879c548))
-
-## [v0.2.2](https://github.com/DataShades/file-keeper/releases/tag/v0.2.2) - 2026-04-03
-[Compare with v0.2.1](https://github.com/DataShades/file-keeper/compare/v0.2.1..v0.2.2)
+- S3 adapter fails to move or copy big files(>5GB) ([38f164c](https://github.com/ckan/file-keeper/commit/38f164c6e78fc5ffbc227eea85e1cc093d28a050))
 
 ### 🚜 Refactor
 
-- cloud storages use naive permanent link that expects public bucket ([c981968](https://github.com/DataShades/file-keeper/commit/c98196847b4f1122ae8b1fb0cff73c004c14f13e))
+- S3 adapter uses HEAD request instead of GET to retrieve file details ([a8b7d98](https://github.com/ckan/file-keeper/commit/a8b7d98cfb52611a89940b54acdebcbe7b5fd27e))
+- S3 adapter supports big file uploads(>5GB) without multipart ([1a2b32c](https://github.com/ckan/file-keeper/commit/1a2b32c969e32c90ad9b50e8f2d53c229c9f54e6))
+- IterableBytesReader delegates read to underlying BufferedReader when possible ([84ca69f](https://github.com/ckan/file-keeper/commit/84ca69f619cb948e74216300bfcd4c8fed3429fd))
 
-## [v0.2.1](https://github.com/DataShades/file-keeper/releases/tag/v0.2.1) - 2026-04-02
-[Compare with v0.1.2](https://github.com/DataShades/file-keeper/compare/v0.1.2..v0.2.1)
+## [v0.2.6](https://github.com/ckan/file-keeper/releases/tag/v0.2.6) - 2026-08-25
+[Compare with v0.2.5](https://github.com/ckan/file-keeper/compare/v0.2.5..v0.2.6)
 
 ### 🚀 Features
 
-- [**breaking**] python v3.10; add algorithm to filedata; kw_only parameters of filedata ([9b0a2a1](https://github.com/DataShades/file-keeper/commit/9b0a2a10a28c3bca5064492e2887cabeab23330e))
-- stable permanent and temporal link for s3, azure and gcs ([36a72eb](https://github.com/DataShades/file-keeper/commit/36a72eb3f044b68d3cf5cb7e99e9bf31485864f1))
+- add follow_symlinks option to fs adapter ([d0d3ac2](https://github.com/ckan/file-keeper/commit/d0d3ac222fb65c7d49cbfc900c8fcf2583153cec))
+
+## [v0.2.5](https://github.com/ckan/file-keeper/releases/tag/v0.2.5) - 2026-08-25
+[Compare with v0.2.4](https://github.com/ckan/file-keeper/compare/v0.2.4..v0.2.5)
+
+### 🐛 Bug Fixes
+
+- do not allow accessing files by common prefix, like `folder_evil` for path `folder` ([49ad341](https://github.com/ckan/file-keeper/commit/49ad341c8b426fd6ecbc0db3f7149d7cc86be98c))
+
+## [v0.2.4](https://github.com/ckan/file-keeper/releases/tag/v0.2.4) - 2026-05-14
+[Compare with v0.2.3](https://github.com/ckan/file-keeper/compare/v0.2.3..v0.2.4)
+
+### 🚀 Features
+
+- s3 storage accepts `config` option for botocore.config.Config ([95100e5](https://github.com/ckan/file-keeper/commit/95100e5eaed3a70fd4a85a11c48ff2095e8397c9))
+
+## [v0.2.3](https://github.com/ckan/file-keeper/releases/tag/v0.2.3) - 2026-05-13
+[Compare with v0.2.2](https://github.com/ckan/file-keeper/compare/v0.2.2..v0.2.3)
+
+### 🚀 Features
+
+- make_upload accepts optional mime parameter ([feb716e](https://github.com/ckan/file-keeper/commit/feb716e9972eb69020378e18806ced48641a5eb6))
+
+### 🐛 Bug Fixes
+
+- temporary_link duplicates storage path ([33d0a67](https://github.com/ckan/file-keeper/commit/33d0a67e13a8e9aaaa048bc770b307d5c879c548))
+
+## [v0.2.2](https://github.com/ckan/file-keeper/releases/tag/v0.2.2) - 2026-04-03
+[Compare with v0.2.1](https://github.com/ckan/file-keeper/compare/v0.2.1..v0.2.2)
 
 ### 🚜 Refactor
 
-- [**breaking**] override_existing -> overwrite_existing ([2bc8f2c](https://github.com/DataShades/file-keeper/commit/2bc8f2ceac61fce352ec6c2a89fc55b49b8146ea))
-- [**breaking**] static_uuid renamed to uuid5, other uuid renamed to uuid4 ([a610898](https://github.com/DataShades/file-keeper/commit/a610898928de0645bc8c6535289bedc7fd390a5c))
+- cloud storages use naive permanent link that expects public bucket ([c981968](https://github.com/ckan/file-keeper/commit/c98196847b4f1122ae8b1fb0cff73c004c14f13e))
 
-## [v0.1.2](https://github.com/DataShades/file-keeper/releases/tag/v0.1.2) - 2026-03-13
-[Compare with v0.1.1](https://github.com/DataShades/file-keeper/compare/v0.1.1..v0.1.2)
-
-### 🚀 Features
-
-- extract link capabilities into Capability.LINK_CAPABILITIES ([b6c6b88](https://github.com/DataShades/file-keeper/commit/b6c6b884f62c9ea2f00f59a0c40379c6ee7a6701))
-
-## [v0.1.1](https://github.com/DataShades/file-keeper/releases/tag/v0.1.1) - 2026-03-12
-[Compare with v0.1.0](https://github.com/DataShades/file-keeper/compare/v0.1.0..v0.1.1)
+## [v0.2.1](https://github.com/ckan/file-keeper/releases/tag/v0.2.1) - 2026-04-02
+[Compare with v0.1.2](https://github.com/ckan/file-keeper/compare/v0.1.2..v0.2.1)
 
 ### 🚀 Features
 
-- add list_adapters ([2426358](https://github.com/DataShades/file-keeper/commit/2426358e4ac478fe6785b4bbfbd9cb9aa992c9ac))
-
-### 🐛 Bug Fixes
-
-- location_transformers mangle "path" part ([8d382c1](https://github.com/DataShades/file-keeper/commit/8d382c12c4a51e62fa9aef1f0a83cabd573cf123))
-
-## [v0.1.0](https://github.com/DataShades/file-keeper/releases/tag/v0.1.0) - 2026-01-28
-[Compare with v0.1.0a7](https://github.com/DataShades/file-keeper/compare/v0.1.0a7..v0.1.0)
-
-### 🚀 Features
-
-- add type to settings ([40435f6](https://github.com/DataShades/file-keeper/commit/40435f656c79b3f7ee47de6d6782c7c3f9313afc))
+- [**breaking**] python v3.10; add algorithm to filedata; kw_only parameters of filedata ([9b0a2a1](https://github.com/ckan/file-keeper/commit/9b0a2a10a28c3bca5064492e2887cabeab23330e))
+- stable permanent and temporal link for s3, azure and gcs ([36a72eb](https://github.com/ckan/file-keeper/commit/36a72eb3f044b68d3cf5cb7e99e9bf31485864f1))
 
 ### 🚜 Refactor
 
-- gcs users AnonymousCredentials when no alternative provided ([667bc12](https://github.com/DataShades/file-keeper/commit/667bc1238dddd0bb5be3552f5bf710bd6150c308))
+- [**breaking**] override_existing -> overwrite_existing ([2bc8f2c](https://github.com/ckan/file-keeper/commit/2bc8f2ceac61fce352ec6c2a89fc55b49b8146ea))
+- [**breaking**] static_uuid renamed to uuid5, other uuid renamed to uuid4 ([a610898](https://github.com/ckan/file-keeper/commit/a610898928de0645bc8c6535289bedc7fd390a5c))
 
-## [v0.1.0a7](https://github.com/DataShades/file-keeper/releases/tag/v0.1.0a7) - 2026-01-08
-[Compare with v0.1.0a6](https://github.com/DataShades/file-keeper/compare/v0.1.0a6..v0.1.0a7)
-
-### 🐛 Bug Fixes
-
-- fsspec does not createds intermediate folders ([7b6ebb0](https://github.com/DataShades/file-keeper/commit/7b6ebb0b87200a2d70c8d8fe91bee86372a2d99e))
-- copy and move fail if directory does not exist ([a3da0d1](https://github.com/DataShades/file-keeper/commit/a3da0d1b7a9514e83d0a5c35e1ce8e176e385bc5))
-
-## [v0.1.0a6](https://github.com/DataShades/file-keeper/releases/tag/v0.1.0a6) - 2026-01-07
-[Compare with v0.1.0a4](https://github.com/DataShades/file-keeper/compare/v0.1.0a4..v0.1.0a6)
+## [v0.1.2](https://github.com/ckan/file-keeper/releases/tag/v0.1.2) - 2026-03-13
+[Compare with v0.1.1](https://github.com/ckan/file-keeper/compare/v0.1.1..v0.1.2)
 
 ### 🚀 Features
 
-- skip_in_place_copy/move ([b1d252a](https://github.com/DataShades/file-keeper/commit/b1d252aa4e66bddc60544528b40cd5f1cd741c00))
-- obstore adapter ([ea89faf](https://github.com/DataShades/file-keeper/commit/ea89faf02e336a5ba4a5df6a5ad455ad8b01422f))
-- add filtered_scan operation ([b4f08f6](https://github.com/DataShades/file-keeper/commit/b4f08f6a7f6fee0f7552419adf0355c973e00312))
-- add fsstore adapter ([fd95821](https://github.com/DataShades/file-keeper/commit/fd95821bee2bb9010ccea2a39de19fab2c138b36))
-- analyzer got separate size/content_type/hash methods ([3f8457a](https://github.com/DataShades/file-keeper/commit/3f8457abb1b5d79209dbbb147cbdb68d2d60c51c))
+- extract link capabilities into Capability.LINK_CAPABILITIES ([b6c6b88](https://github.com/ckan/file-keeper/commit/b6c6b884f62c9ea2f00f59a0c40379c6ee7a6701))
 
-### 🐛 Bug Fixes
-
-- range_synthetic fails when end is not specified ([41738b0](https://github.com/DataShades/file-keeper/commit/41738b0a6d6088750de2a524843331c1749ad537))
-
-## [v0.1.0a4](https://github.com/DataShades/file-keeper/releases/tag/v0.1.0a4) - 2025-09-01
-[Compare with v0.0.10](https://github.com/DataShades/file-keeper/compare/v0.0.10..v0.1.0a4)
+## [v0.1.1](https://github.com/ckan/file-keeper/releases/tag/v0.1.1) - 2026-03-12
+[Compare with v0.1.0](https://github.com/ckan/file-keeper/compare/v0.1.0..v0.1.1)
 
 ### 🚀 Features
 
-- [**breaking**] frozen FileData and MultipartData ([cb9dbf8](https://github.com/DataShades/file-keeper/commit/cb9dbf8ddf7516d461d0a295f69d41090b706195))
-- enable multipart for S3 adapter(not stable) ([c8bb37b](https://github.com/DataShades/file-keeper/commit/c8bb37b8ca32279143c831543a7a28e77c81ba76))
-- enable resumable for GCS adapter(not stable) ([d00f9bd](https://github.com/DataShades/file-keeper/commit/d00f9bd8d87eb968812695a84283821ac0e31a07))
-- global storage configuration via file-keeper.json ([58939eb](https://github.com/DataShades/file-keeper/commit/58939eb2f27075d201e9bcbfb2625adb67b68a77))
-- define `RESUMABLE` capability ([bab84fa](https://github.com/DataShades/file-keeper/commit/bab84fa419aa6188e9e80a85381bf24d9dc50747))
-- complete GCS adapter ([db97e20](https://github.com/DataShades/file-keeper/commit/db97e201532627d65265d0bf81bdc581ad19309d))
-- Azure Blob storage adapter ([fb491b2](https://github.com/DataShades/file-keeper/commit/fb491b2b22681aaf8e66589166baa848d4c40a18))
-- zip adapter ([3b3f978](https://github.com/DataShades/file-keeper/commit/3b3f978eb462139e53f1d1d62dd68e2f05061920))
-- add SIGNED capability ([fc5fcbb](https://github.com/DataShades/file-keeper/commit/fc5fcbba523691b4ec5d4e095e06b413b59d2ff2))
-- Storage.full_path ([7974aca](https://github.com/DataShades/file-keeper/commit/7974aca4a73a1e1f526afbeeb31f4fa106b3c4e4))
-- add generic disabled_capabilities option ([c335071](https://github.com/DataShades/file-keeper/commit/c335071a84c13879a052ce62e07982b1b1ffc46a))
-- add EXISTS, SCAN, MOVE and COPY to s3 adapter ([2cb762e](https://github.com/DataShades/file-keeper/commit/2cb762e5450cf7a881cd0861f2493a319a0dac01))
-- add EXISTS and ANALYZE to libcloud adapter ([12349aa](https://github.com/DataShades/file-keeper/commit/12349aa76ef106a157fd40e744a2522ab4544409))
-- less strict typing rules for storage settings ([247d1c6](https://github.com/DataShades/file-keeper/commit/247d1c6291ab1bc52324f13bdbf642b8c9c53c1b))
-- remove __str__ from exceptions ([2ecd8a2](https://github.com/DataShades/file-keeper/commit/2ecd8a2b8ca2cf90c8e7d1c9fc2e70f6dd39f216))
-- add memory storage ([3abc218](https://github.com/DataShades/file-keeper/commit/3abc2181493c50061ce05c185af29ebe65863d02))
-- storage.ext.register accepts optional `reset` parameter ([c5edce8](https://github.com/DataShades/file-keeper/commit/c5edce8c397bc326c6448f0cb382900995757c4f))
-- Settings log extra options with debug level instead of raising an exception ([7308578](https://github.com/DataShades/file-keeper/commit/7308578d8f4281e427b439ba8cb9540c3ce61d30))
-- add null storage ([c1f8476](https://github.com/DataShades/file-keeper/commit/c1f8476e701bfc9b7a3ced532d8c4edffefdeae0))
+- add list_adapters ([2426358](https://github.com/ckan/file-keeper/commit/2426358e4ac478fe6785b4bbfbd9cb9aa992c9ac))
 
 ### 🐛 Bug Fixes
 
-- `FileData.from_*` ignore overrides ([60e0564](https://github.com/DataShades/file-keeper/commit/60e05648cd55a46af1515665b81db7527b4895ec))
-- Storage.full_path allows `..` ([3c65a8e](https://github.com/DataShades/file-keeper/commit/3c65a8e6fb0d7181769722d30c007f07715a1efa))
-- s3 unconditionally overrides files ([c059f2b](https://github.com/DataShades/file-keeper/commit/c059f2b67550a2d46f169b890d4705d725b6e11c))
-- storage settings keep a lot of intermediate parameters ([cf69cf2](https://github.com/DataShades/file-keeper/commit/cf69cf26f4d7ad9e2b16204c6a9803ec6c0a2edb))
-- libcloud silently overrides existing objects ([599f099](https://github.com/DataShades/file-keeper/commit/599f09992ed14e926878b9997abd2bca2155326a))
+- location_transformers mangle "path" part ([8d382c1](https://github.com/ckan/file-keeper/commit/8d382c12c4a51e62fa9aef1f0a83cabd573cf123))
+
+## [v0.1.0](https://github.com/ckan/file-keeper/releases/tag/v0.1.0) - 2026-01-28
+[Compare with v0.1.0a7](https://github.com/ckan/file-keeper/compare/v0.1.0a7..v0.1.0)
+
+### 🚀 Features
+
+- add type to settings ([40435f6](https://github.com/ckan/file-keeper/commit/40435f656c79b3f7ee47de6d6782c7c3f9313afc))
 
 ### 🚜 Refactor
 
-- [**breaking**] multipart_start requires size; multipart_update required upload and part ([02c15cb](https://github.com/DataShades/file-keeper/commit/02c15cb0377b4e3dccfde4244abe8fbadcfdf4fe))
-- [**breaking**] resumable_start requires size; resumable_resume required upload ([3bb15a1](https://github.com/DataShades/file-keeper/commit/3bb15a16733feb679d25baf4555e39426761b247))
-- [**breaking**] multipart_start/resumable_start expect location instead of data ([d169bef](https://github.com/DataShades/file-keeper/commit/d169bef953cac27ac7951542183721f1390cca77))
-- [**breaking**] disable MULTIPART capabilities on s3, fs and memory storages ([50afc52](https://github.com/DataShades/file-keeper/commit/50afc5284e521ffe27af635b98a8a58cf1621f99))
-- [**breaking**] remove `location` from arguments of `multipart_start` ([876ce46](https://github.com/DataShades/file-keeper/commit/876ce467995139c4a8790f912b850415e9501b1f))
-- [**breaking**] drop `MultipartData` and use `FileData` instead everywhere ([c1c01c3](https://github.com/DataShades/file-keeper/commit/c1c01c3ba4af087b29970cd84ecc743819e33675))
-- [**breaking**] `Storage.remove` does not accept `MultipartData`. Use `Storage.multipart_remove` instead ([ce3e522](https://github.com/DataShades/file-keeper/commit/ce3e522667126d2738d6c100db20dd88b60a41de))
-- [**breaking**] `create_path` option for fs renamed to `initialize` ([1329997](https://github.com/DataShades/file-keeper/commit/1329997ba923d77fa2a8379dc9edf76562a88ad3))
-- [**breaking**] Storage.temporal_link requires `duration` parameter ([0d92777](https://github.com/DataShades/file-keeper/commit/0d92777e5a56b77c1b34cc0abdbffec3e7218eb6))
-- [**breaking**] Storage.stream_as_upload renamed to file_as_upload ([29ec68b](https://github.com/DataShades/file-keeper/commit/29ec68bae9325502f46e87c7813e4d7844b1e5c6))
-- [**breaking**] fs and opendal settings no longer have recursive flag ([3f6e29b](https://github.com/DataShades/file-keeper/commit/3f6e29b30d3cc552691c58c93d930e682841af17))
-- add LINK_PERMANENT to s3 ([d64e8be](https://github.com/DataShades/file-keeper/commit/d64e8be6ea926d8107a61b5aefaa515b17035ebd))
-- add LINK_PERMANENT to gcs ([66cbcf3](https://github.com/DataShades/file-keeper/commit/66cbcf39344b7210b82a1aca2fc574b5bdf24a86))
-- location transformers and `Storage.prepare_location` do not accept FileData anymore` ([60fc015](https://github.com/DataShades/file-keeper/commit/60fc015305f45a9990a65c24a1f89ec7272996c4))
-- redis uses `bucket` option instead of `path` ([966241f](https://github.com/DataShades/file-keeper/commit/966241ff1627135cedea0de690fa95a314428f33))
-- remove pytz dependency ([43079ea](https://github.com/DataShades/file-keeper/commit/43079ead8b75af52ddefc75374d36ca857996197))
-- rename redis_url to url in redis settings ([2c998f4](https://github.com/DataShades/file-keeper/commit/2c998f4fe8876ce8ad44e24dea06e1ab0ac292bc))
+- gcs users AnonymousCredentials when no alternative provided ([667bc12](https://github.com/ckan/file-keeper/commit/667bc1238dddd0bb5be3552f5bf710bd6150c308))
+
+## [v0.1.0a7](https://github.com/ckan/file-keeper/releases/tag/v0.1.0a7) - 2026-01-08
+[Compare with v0.1.0a6](https://github.com/ckan/file-keeper/compare/v0.1.0a6..v0.1.0a7)
+
+### 🐛 Bug Fixes
+
+- fsspec does not createds intermediate folders ([7b6ebb0](https://github.com/ckan/file-keeper/commit/7b6ebb0b87200a2d70c8d8fe91bee86372a2d99e))
+- copy and move fail if directory does not exist ([a3da0d1](https://github.com/ckan/file-keeper/commit/a3da0d1b7a9514e83d0a5c35e1ce8e176e385bc5))
+
+## [v0.1.0a6](https://github.com/ckan/file-keeper/releases/tag/v0.1.0a6) - 2026-01-07
+[Compare with v0.1.0a4](https://github.com/ckan/file-keeper/compare/v0.1.0a4..v0.1.0a6)
+
+### 🚀 Features
+
+- skip_in_place_copy/move ([b1d252a](https://github.com/ckan/file-keeper/commit/b1d252aa4e66bddc60544528b40cd5f1cd741c00))
+- obstore adapter ([ea89faf](https://github.com/ckan/file-keeper/commit/ea89faf02e336a5ba4a5df6a5ad455ad8b01422f))
+- add filtered_scan operation ([b4f08f6](https://github.com/ckan/file-keeper/commit/b4f08f6a7f6fee0f7552419adf0355c973e00312))
+- add fsstore adapter ([fd95821](https://github.com/ckan/file-keeper/commit/fd95821bee2bb9010ccea2a39de19fab2c138b36))
+- analyzer got separate size/content_type/hash methods ([3f8457a](https://github.com/ckan/file-keeper/commit/3f8457abb1b5d79209dbbb147cbdb68d2d60c51c))
+
+### 🐛 Bug Fixes
+
+- range_synthetic fails when end is not specified ([41738b0](https://github.com/ckan/file-keeper/commit/41738b0a6d6088750de2a524843331c1749ad537))
+
+## [v0.1.0a4](https://github.com/ckan/file-keeper/releases/tag/v0.1.0a4) - 2025-09-01
+[Compare with v0.0.10](https://github.com/ckan/file-keeper/compare/v0.0.10..v0.1.0a4)
+
+### 🚀 Features
+
+- [**breaking**] frozen FileData and MultipartData ([cb9dbf8](https://github.com/ckan/file-keeper/commit/cb9dbf8ddf7516d461d0a295f69d41090b706195))
+- enable multipart for S3 adapter(not stable) ([c8bb37b](https://github.com/ckan/file-keeper/commit/c8bb37b8ca32279143c831543a7a28e77c81ba76))
+- enable resumable for GCS adapter(not stable) ([d00f9bd](https://github.com/ckan/file-keeper/commit/d00f9bd8d87eb968812695a84283821ac0e31a07))
+- global storage configuration via file-keeper.json ([58939eb](https://github.com/ckan/file-keeper/commit/58939eb2f27075d201e9bcbfb2625adb67b68a77))
+- define `RESUMABLE` capability ([bab84fa](https://github.com/ckan/file-keeper/commit/bab84fa419aa6188e9e80a85381bf24d9dc50747))
+- complete GCS adapter ([db97e20](https://github.com/ckan/file-keeper/commit/db97e201532627d65265d0bf81bdc581ad19309d))
+- Azure Blob storage adapter ([fb491b2](https://github.com/ckan/file-keeper/commit/fb491b2b22681aaf8e66589166baa848d4c40a18))
+- zip adapter ([3b3f978](https://github.com/ckan/file-keeper/commit/3b3f978eb462139e53f1d1d62dd68e2f05061920))
+- add SIGNED capability ([fc5fcbb](https://github.com/ckan/file-keeper/commit/fc5fcbba523691b4ec5d4e095e06b413b59d2ff2))
+- Storage.full_path ([7974aca](https://github.com/ckan/file-keeper/commit/7974aca4a73a1e1f526afbeeb31f4fa106b3c4e4))
+- add generic disabled_capabilities option ([c335071](https://github.com/ckan/file-keeper/commit/c335071a84c13879a052ce62e07982b1b1ffc46a))
+- add EXISTS, SCAN, MOVE and COPY to s3 adapter ([2cb762e](https://github.com/ckan/file-keeper/commit/2cb762e5450cf7a881cd0861f2493a319a0dac01))
+- add EXISTS and ANALYZE to libcloud adapter ([12349aa](https://github.com/ckan/file-keeper/commit/12349aa76ef106a157fd40e744a2522ab4544409))
+- less strict typing rules for storage settings ([247d1c6](https://github.com/ckan/file-keeper/commit/247d1c6291ab1bc52324f13bdbf642b8c9c53c1b))
+- remove __str__ from exceptions ([2ecd8a2](https://github.com/ckan/file-keeper/commit/2ecd8a2b8ca2cf90c8e7d1c9fc2e70f6dd39f216))
+- add memory storage ([3abc218](https://github.com/ckan/file-keeper/commit/3abc2181493c50061ce05c185af29ebe65863d02))
+- storage.ext.register accepts optional `reset` parameter ([c5edce8](https://github.com/ckan/file-keeper/commit/c5edce8c397bc326c6448f0cb382900995757c4f))
+- Settings log extra options with debug level instead of raising an exception ([7308578](https://github.com/ckan/file-keeper/commit/7308578d8f4281e427b439ba8cb9540c3ce61d30))
+- add null storage ([c1f8476](https://github.com/ckan/file-keeper/commit/c1f8476e701bfc9b7a3ced532d8c4edffefdeae0))
+
+### 🐛 Bug Fixes
+
+- `FileData.from_*` ignore overrides ([60e0564](https://github.com/ckan/file-keeper/commit/60e05648cd55a46af1515665b81db7527b4895ec))
+- Storage.full_path allows `..` ([3c65a8e](https://github.com/ckan/file-keeper/commit/3c65a8e6fb0d7181769722d30c007f07715a1efa))
+- s3 unconditionally overrides files ([c059f2b](https://github.com/ckan/file-keeper/commit/c059f2b67550a2d46f169b890d4705d725b6e11c))
+- storage settings keep a lot of intermediate parameters ([cf69cf2](https://github.com/ckan/file-keeper/commit/cf69cf26f4d7ad9e2b16204c6a9803ec6c0a2edb))
+- libcloud silently overrides existing objects ([599f099](https://github.com/ckan/file-keeper/commit/599f09992ed14e926878b9997abd2bca2155326a))
+
+### 🚜 Refactor
+
+- [**breaking**] multipart_start requires size; multipart_update required upload and part ([02c15cb](https://github.com/ckan/file-keeper/commit/02c15cb0377b4e3dccfde4244abe8fbadcfdf4fe))
+- [**breaking**] resumable_start requires size; resumable_resume required upload ([3bb15a1](https://github.com/ckan/file-keeper/commit/3bb15a16733feb679d25baf4555e39426761b247))
+- [**breaking**] multipart_start/resumable_start expect location instead of data ([d169bef](https://github.com/ckan/file-keeper/commit/d169bef953cac27ac7951542183721f1390cca77))
+- [**breaking**] disable MULTIPART capabilities on s3, fs and memory storages ([50afc52](https://github.com/ckan/file-keeper/commit/50afc5284e521ffe27af635b98a8a58cf1621f99))
+- [**breaking**] remove `location` from arguments of `multipart_start` ([876ce46](https://github.com/ckan/file-keeper/commit/876ce467995139c4a8790f912b850415e9501b1f))
+- [**breaking**] drop `MultipartData` and use `FileData` instead everywhere ([c1c01c3](https://github.com/ckan/file-keeper/commit/c1c01c3ba4af087b29970cd84ecc743819e33675))
+- [**breaking**] `Storage.remove` does not accept `MultipartData`. Use `Storage.multipart_remove` instead ([ce3e522](https://github.com/ckan/file-keeper/commit/ce3e522667126d2738d6c100db20dd88b60a41de))
+- [**breaking**] `create_path` option for fs renamed to `initialize` ([1329997](https://github.com/ckan/file-keeper/commit/1329997ba923d77fa2a8379dc9edf76562a88ad3))
+- [**breaking**] Storage.temporal_link requires `duration` parameter ([0d92777](https://github.com/ckan/file-keeper/commit/0d92777e5a56b77c1b34cc0abdbffec3e7218eb6))
+- [**breaking**] Storage.stream_as_upload renamed to file_as_upload ([29ec68b](https://github.com/ckan/file-keeper/commit/29ec68bae9325502f46e87c7813e4d7844b1e5c6))
+- [**breaking**] fs and opendal settings no longer have recursive flag ([3f6e29b](https://github.com/ckan/file-keeper/commit/3f6e29b30d3cc552691c58c93d930e682841af17))
+- add LINK_PERMANENT to s3 ([d64e8be](https://github.com/ckan/file-keeper/commit/d64e8be6ea926d8107a61b5aefaa515b17035ebd))
+- add LINK_PERMANENT to gcs ([66cbcf3](https://github.com/ckan/file-keeper/commit/66cbcf39344b7210b82a1aca2fc574b5bdf24a86))
+- location transformers and `Storage.prepare_location` do not accept FileData anymore` ([60fc015](https://github.com/ckan/file-keeper/commit/60fc015305f45a9990a65c24a1f89ec7272996c4))
+- redis uses `bucket` option instead of `path` ([966241f](https://github.com/ckan/file-keeper/commit/966241ff1627135cedea0de690fa95a314428f33))
+- remove pytz dependency ([43079ea](https://github.com/ckan/file-keeper/commit/43079ead8b75af52ddefc75374d36ca857996197))
+- rename redis_url to url in redis settings ([2c998f4](https://github.com/ckan/file-keeper/commit/2c998f4fe8876ce8ad44e24dea06e1ab0ac292bc))
 
 ### ❌ Removal
 
-- [**breaking**] drop python v3.9 support ([d499876](https://github.com/DataShades/file-keeper/commit/d499876db6d185c7dcad9f67d93a7c7bb2c419a5))
+- [**breaking**] drop python v3.9 support ([d499876](https://github.com/ckan/file-keeper/commit/d499876db6d185c7dcad9f67d93a7c7bb2c419a5))
 
 ### 📚 Documentation
 
-- Add overview page ([6ad5c89](https://github.com/DataShades/file-keeper/commit/6ad5c893e4e7079f732630a4049071ea2b765f72))
+- Add overview page ([6ad5c89](https://github.com/ckan/file-keeper/commit/6ad5c893e4e7079f732630a4049071ea2b765f72))
 
-## [v0.0.10](https://github.com/DataShades/file-keeper/releases/tag/v0.0.10) - 2025-07-13
-[Compare with v0.0.9](https://github.com/DataShades/file-keeper/compare/v0.0.9..v0.0.10)
+## [v0.0.10](https://github.com/ckan/file-keeper/releases/tag/v0.0.10) - 2025-07-13
+[Compare with v0.0.9](https://github.com/ckan/file-keeper/compare/v0.0.9..v0.0.10)
 
 ### 🚀 Features
 
-- add public_prefix(and permanent_link) to libcloud ([3bc7591](https://github.com/DataShades/file-keeper/commit/3bc759105f2d332b329af8b45e04fe2360d5928e))
-- static_uuid transformer ([88383e0](https://github.com/DataShades/file-keeper/commit/88383e05c993b156d6a6253e43ef8902e13b3d9f))
-- location transformers receive optional upload-or-data second argument ([8e6a6dc](https://github.com/DataShades/file-keeper/commit/8e6a6dc41d50fbcd6e2be8d984673f667333f1c2))
+- add public_prefix(and permanent_link) to libcloud ([3bc7591](https://github.com/ckan/file-keeper/commit/3bc759105f2d332b329af8b45e04fe2360d5928e))
+- static_uuid transformer ([88383e0](https://github.com/ckan/file-keeper/commit/88383e05c993b156d6a6253e43ef8902e13b3d9f))
+- location transformers receive optional upload-or-data second argument ([8e6a6dc](https://github.com/ckan/file-keeper/commit/8e6a6dc41d50fbcd6e2be8d984673f667333f1c2))
 
 ### 🐛 Bug Fixes
 
-- fix_extension transformer raises an error when upload is missing ([a827df5](https://github.com/DataShades/file-keeper/commit/a827df57168dab6e6d05e82bf9e6d680e25faed3))
+- fix_extension transformer raises an error when upload is missing ([a827df5](https://github.com/ckan/file-keeper/commit/a827df57168dab6e6d05e82bf9e6d680e25faed3))
 
 ### ❌ Removal
 
-- delete Storage.public_link ([da08744](https://github.com/DataShades/file-keeper/commit/da08744021d56ea090cc522b82be70a4d5334771))
+- delete Storage.public_link ([da08744](https://github.com/ckan/file-keeper/commit/da08744021d56ea090cc522b82be70a4d5334771))
 
-## [v0.0.9](https://github.com/DataShades/file-keeper/releases/tag/v0.0.9) - 2025-07-02
-[Compare with v0.0.8](https://github.com/DataShades/file-keeper/compare/v0.0.8..v0.0.9)
+## [v0.0.9](https://github.com/ckan/file-keeper/releases/tag/v0.0.9) - 2025-07-02
+[Compare with v0.0.8](https://github.com/ckan/file-keeper/compare/v0.0.8..v0.0.9)
 
 ### 🚀 Features
 
-- add fix_extension transformer ([1345915](https://github.com/DataShades/file-keeper/commit/13459159fa22a50688d4d224942b383f54c5345e))
-- opendal got path option ([d044ade](https://github.com/DataShades/file-keeper/commit/d044ade99fa8139f2ff661bfbd03bf599363ad19))
+- add fix_extension transformer ([1345915](https://github.com/ckan/file-keeper/commit/13459159fa22a50688d4d224942b383f54c5345e))
+- opendal got path option ([d044ade](https://github.com/ckan/file-keeper/commit/d044ade99fa8139f2ff661bfbd03bf599363ad19))
 
 ### 🐛 Bug Fixes
 
-- cast fs:multipart:position to int ([dc4d768](https://github.com/DataShades/file-keeper/commit/dc4d7686d00f1bae401e5c018e98c49a2ea5f40a))
+- cast fs:multipart:position to int ([dc4d768](https://github.com/ckan/file-keeper/commit/dc4d7686d00f1bae401e5c018e98c49a2ea5f40a))
 
-## [v0.0.8](https://github.com/DataShades/file-keeper/releases/tag/v0.0.8) - 2025-04-23
-[Compare with v0.0.7](https://github.com/DataShades/file-keeper/compare/v0.0.7..v0.0.8)
+## [v0.0.8](https://github.com/ckan/file-keeper/releases/tag/v0.0.8) - 2025-04-23
+[Compare with v0.0.7](https://github.com/ckan/file-keeper/compare/v0.0.7..v0.0.8)
 
 ### 🚀 Features
 
-- libcloud storage got path option ([555036c](https://github.com/DataShades/file-keeper/commit/555036c428a30defe95392407a182f0729919970))
+- libcloud storage got path option ([555036c](https://github.com/ckan/file-keeper/commit/555036c428a30defe95392407a182f0729919970))
 
 ### 🐛 Bug Fixes
 
-- fs storage reports relative location of the missing file ([cef9589](https://github.com/DataShades/file-keeper/commit/cef9589b667679cd222c56a07931e5f1622ac79c))
+- fs storage reports relative location of the missing file ([cef9589](https://github.com/ckan/file-keeper/commit/cef9589b667679cd222c56a07931e5f1622ac79c))
 
-## [v0.0.7](https://github.com/DataShades/file-keeper/releases/tag/v0.0.7) - 2025-03-28
-[Compare with v0.0.6](https://github.com/DataShades/file-keeper/compare/v0.0.6..v0.0.7)
+## [v0.0.7](https://github.com/ckan/file-keeper/releases/tag/v0.0.7) - 2025-03-28
+[Compare with v0.0.6](https://github.com/ckan/file-keeper/compare/v0.0.6..v0.0.7)
 
 ### 🚀 Features
 
-- storage upload and append requires Upload ([ebf5fef](https://github.com/DataShades/file-keeper/commit/ebf5fef0294cecc6da880994255696229d96a2ac))
+- storage upload and append requires Upload ([ebf5fef](https://github.com/ckan/file-keeper/commit/ebf5fef0294cecc6da880994255696229d96a2ac))
 
 ### 🐛 Bug Fixes
 
-- fs storage checks permission when creating folders ([1791d68](https://github.com/DataShades/file-keeper/commit/1791d68a3d1dd4eaaec4d7a5edc4b7af2fc3ac46))
+- fs storage checks permission when creating folders ([1791d68](https://github.com/ckan/file-keeper/commit/1791d68a3d1dd4eaaec4d7a5edc4b7af2fc3ac46))
 
-## [v0.0.6](https://github.com/DataShades/file-keeper/releases/tag/v0.0.6) - 2025-03-23
-[Compare with v0.0.4](https://github.com/DataShades/file-keeper/compare/v0.0.4..v0.0.6)
+## [v0.0.6](https://github.com/ckan/file-keeper/releases/tag/v0.0.6) - 2025-03-23
+[Compare with v0.0.4](https://github.com/ckan/file-keeper/compare/v0.0.4..v0.0.6)
 
 ### 🚀 Features
 
-- add *_synthetic methods ([27c4164](https://github.com/DataShades/file-keeper/commit/27c4164ea128feb9ca5a7e6e8ef83c80f99f70a6))
+- add *_synthetic methods ([27c4164](https://github.com/ckan/file-keeper/commit/27c4164ea128feb9ca5a7e6e8ef83c80f99f70a6))
 
 ### 🐛 Bug Fixes
 
-- multipart update of s3 and gcs work with arbitrary upload ([902c9cb](https://github.com/DataShades/file-keeper/commit/902c9cbd48fcd25ade62f12bd926bfc7ece32998))
+- multipart update of s3 and gcs work with arbitrary upload ([902c9cb](https://github.com/ckan/file-keeper/commit/902c9cbd48fcd25ade62f12bd926bfc7ece32998))
 
-## [v0.0.4](https://github.com/DataShades/file-keeper/releases/tag/v0.0.4) - 2025-03-22
-[Compare with v0.0.3](https://github.com/DataShades/file-keeper/compare/v0.0.3..v0.0.4)
+## [v0.0.4](https://github.com/ckan/file-keeper/releases/tag/v0.0.4) - 2025-03-22
+[Compare with v0.0.3](https://github.com/ckan/file-keeper/compare/v0.0.3..v0.0.4)
 
 ### 🚀 Features
 
-- storages accept any type of upload ([a64ee3d](https://github.com/DataShades/file-keeper/commit/a64ee3da989930201964f22b4f32c62641da9294))
+- storages accept any type of upload ([a64ee3d](https://github.com/ckan/file-keeper/commit/a64ee3da989930201964f22b4f32c62641da9294))
 
 ### 🚜 Refactor
 
-- remove validation from storage ([93392f9](https://github.com/DataShades/file-keeper/commit/93392f9d8473a913623b8dd35cd202d35b4368ec))
-- remove type and size validation from append and compose ([890c89a](https://github.com/DataShades/file-keeper/commit/890c89a8109c64f2a783c6b8dcd0c59d4c94cd89))
-- remove public link method and capability ([cb39151](https://github.com/DataShades/file-keeper/commit/cb39151fb7e09cfdf3b9cdf0d3e2d98ba519edbe))
+- remove validation from storage ([93392f9](https://github.com/ckan/file-keeper/commit/93392f9d8473a913623b8dd35cd202d35b4368ec))
+- remove type and size validation from append and compose ([890c89a](https://github.com/ckan/file-keeper/commit/890c89a8109c64f2a783c6b8dcd0c59d4c94cd89))
+- remove public link method and capability ([cb39151](https://github.com/ckan/file-keeper/commit/cb39151fb7e09cfdf3b9cdf0d3e2d98ba519edbe))
 
 ### ❌ Removal
 
-- drop link storage ([3328eb2](https://github.com/DataShades/file-keeper/commit/3328eb20a581efc58eef6eb232ada1f9c13753af))
+- drop link storage ([3328eb2](https://github.com/ckan/file-keeper/commit/3328eb20a581efc58eef6eb232ada1f9c13753af))
 
-## [v0.0.2](https://github.com/DataShades/file-keeper/releases/tag/v0.0.2) - 2025-03-17
-[Compare with v0.0.1](https://github.com/DataShades/file-keeper/compare/v0.0.1..v0.0.2)
+## [v0.0.2](https://github.com/ckan/file-keeper/releases/tag/v0.0.2) - 2025-03-17
+[Compare with v0.0.1](https://github.com/ckan/file-keeper/compare/v0.0.1..v0.0.2)
 
 ### 🚀 Features
 
-- stream-based composite implementation of range ([7d47bd8](https://github.com/DataShades/file-keeper/commit/7d47bd836c106ce4f4cfa592f54edaca1020b301))
-- add Location wrapper around unsafe path parameters ([b99f155](https://github.com/DataShades/file-keeper/commit/b99f155f4db79fc6a177d65d5c43b57d65cfe756))
-- file_keeper:opendal adapter ([214fb6c](https://github.com/DataShades/file-keeper/commit/214fb6c1b587648371b622b2537ef6ff63fd5181))
-- file_keeper:redis adapter ([8c7da94](https://github.com/DataShades/file-keeper/commit/8c7da94042c2be5947781683cd9c02a7fca6f03f))
+- stream-based composite implementation of range ([7d47bd8](https://github.com/ckan/file-keeper/commit/7d47bd836c106ce4f4cfa592f54edaca1020b301))
+- add Location wrapper around unsafe path parameters ([b99f155](https://github.com/ckan/file-keeper/commit/b99f155f4db79fc6a177d65d5c43b57d65cfe756))
+- file_keeper:opendal adapter ([214fb6c](https://github.com/ckan/file-keeper/commit/214fb6c1b587648371b622b2537ef6ff63fd5181))
+- file_keeper:redis adapter ([8c7da94](https://github.com/ckan/file-keeper/commit/8c7da94042c2be5947781683cd9c02a7fca6f03f))
 
 ### 🐛 Bug Fixes
 
-- map error during settings initialization into custom exception ([f596037](https://github.com/DataShades/file-keeper/commit/f59603787c634d060a854b4bbf0b86451ffeaea5))
-- fs adapter: infer `uploaded` size if it is not specified in `multipart_update` ([620ec3a](https://github.com/DataShades/file-keeper/commit/620ec3a16a18fe2101b98d634cc9815ec93bf20c))
+- map error during settings initialization into custom exception ([f596037](https://github.com/ckan/file-keeper/commit/f59603787c634d060a854b4bbf0b86451ffeaea5))
+- fs adapter: infer `uploaded` size if it is not specified in `multipart_update` ([620ec3a](https://github.com/ckan/file-keeper/commit/620ec3a16a18fe2101b98d634cc9815ec93bf20c))
 
 ### 🚜 Refactor
 
-- `location_strategy: str` become `location_transformers: list[str]` ([daf2dc6](https://github.com/DataShades/file-keeper/commit/daf2dc6155b273815d198a7abf4cde6983f7855d))
-- remove default range implementation from reader ([36f5f31](https://github.com/DataShades/file-keeper/commit/36f5f31da0d6791d82d20d8ea276140c59b578d0))
+- `location_strategy: str` become `location_transformers: list[str]` ([daf2dc6](https://github.com/ckan/file-keeper/commit/daf2dc6155b273815d198a7abf4cde6983f7855d))
+- remove default range implementation from reader ([36f5f31](https://github.com/ckan/file-keeper/commit/36f5f31da0d6791d82d20d8ea276140c59b578d0))
 
 ### 🧪 Testing
 
-- add standard adapter tests ([d961682](https://github.com/DataShades/file-keeper/commit/d9616827673a74f18c83515e127cfa014b038511))
+- add standard adapter tests ([d961682](https://github.com/ckan/file-keeper/commit/d9616827673a74f18c83515e127cfa014b038511))
 
-## [v0.0.1](https://github.com/DataShades/file-keeper/releases/tag/v0.0.1) - 2025-03-13
+## [v0.0.1](https://github.com/ckan/file-keeper/releases/tag/v0.0.1) - 2025-03-13

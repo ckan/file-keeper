@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "file-keeper"
-version = "0.3.0"
+version = "0.3.1"
 description = "Abstraction level for object storages."
 classifiers = [
 
@@ -18,7 +18,7 @@ authors = [
     {name = "Sergey Motornyuk", email = "sergey.motornyuk@linkdigital.com.au"},
 ]
 maintainers = [
-    {name = "DataShades", email = "datashades@linkdigital.com.au"},
+    {name = "CKAN", email = "info@ckan.org"},
 ]
 license = "AGPL-3.0-or-later"
 license-files = ["LICENSE.txt"]
@@ -29,9 +29,9 @@ content-type = "text/markdown"
 
 
 [project.urls]
-Homepage = "https://github.com/DataShades/file-keeper"
-Documentation = "https://datashades.github.io/file-keeper/"
-Changelog = "https://datashades.github.io/file-keeper/changelog/"
+Homepage = "https://github.com/ckan/file-keeper"
+Documentation = "https://ckan.github.io/file-keeper/"
+Changelog = "https://ckan.github.io/file-keeper/changelog/"
 
 [project.optional-dependencies]
 test = [
