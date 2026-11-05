@@ -23,16 +23,7 @@ jobs:
         ports:
           - 10000:10000
         command: azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0 --skipApiVersionCheck
-      minio:
-        image: docker.io/pgsty/silo:latest
-        ports:
-          - 9000:9000
-          - 9001:9001
-        env:
-          MINIO_ROOT_USER: minioadmin
-          MINIO_ROOT_PASSWORD: minioadmin
-        options: >-
-          --entrypoint 'server /data --console-address ":9001"'
+
     strategy:
       fail-fast: false
       matrix:
@@ -66,6 +57,16 @@ jobs:
         with:
           version: "1.52.2"
           scheme: http
+
+      - name: Start Silo Server
+        run: |
+          docker run -d \
+            --name silo \
+            -p 9000:9000 \
+            -p 9001:9001 \
+            -e MINIO_ROOT_USER=minioadmin \
+            -e MINIO_ROOT_PASSWORD=minioadmin \
+            pgsty/silo:latest server /data --console-address ":9001"
 
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v7
