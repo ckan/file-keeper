@@ -31,7 +31,10 @@ jobs:
         env:
           MINIO_ROOT_USER: minioadmin
           MINIO_ROOT_PASSWORD: minioadmin
-
+        options: >-
+          --entrypoint silo
+          server /data
+          --console-address ":9001"
     strategy:
       fail-fast: false
       matrix:
