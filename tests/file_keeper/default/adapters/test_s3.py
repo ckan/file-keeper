@@ -194,3 +194,32 @@ class TestStorage(standard.Standard):
         )
         result = storage.copy(fk.Location(faker.file_name()), data)
         assert result.hash == "Naz0uXkYBPM=", "Copied file has wrong hash"
+
+    def test_upload_multipart_threshold(self, storage: fk.Storage, faker: Faker):
+        """Test that the multipart threshold setting affects the upload operation."""
+        content = b"0" * 1024 * 1024 * 10
+        result = storage.upload(
+            fk.Location(faker.file_name()),
+            fk.make_upload(content),
+        )
+        assert result.hash == "37789b909bf3cd1199703964ac04e9c5-2", "Uploaded file has wrong hash"
+
+        storage.settings.multipart_threshold = 20 * 1024**2  # pyright: ignore[reportAttributeAccessIssue]
+        result = storage.upload(
+            fk.Location(faker.file_name()),
+            fk.make_upload(content),
+        )
+        assert result.hash == "0c1d32c858f2a7206e347da53b2b046d", "Uploaded file has wrong hash"
+
+    def test_copy_multipart_threshold(self, storage: fk.Storage, faker: Faker):
+        """Test that the multipart threshold setting affects the copy operation."""
+        data = storage.upload(
+            fk.Location(faker.file_name()),
+            fk.make_upload(b"0" * 1024 * 1024 * 10),
+        )
+        result = storage.copy(fk.Location(faker.file_name()), data)
+        assert result.hash == "37789b909bf3cd1199703964ac04e9c5-2", "Copied file has wrong hash"
+
+        storage.settings.multipart_threshold = 20 * 1024**2  # pyright: ignore[reportAttributeAccessIssue]
+        result = storage.copy(fk.Location(faker.file_name()), data)
+        assert result.hash == "0c1d32c858f2a7206e347da53b2b046d", "Copied file has wrong hash"

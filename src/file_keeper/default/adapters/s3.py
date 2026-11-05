@@ -11,6 +11,7 @@ from urllib.parse import urlparse, urlunparse
 
 import boto3
 from botocore.config import Config
+from boto3.s3.transfer import TransferConfig
 from typing_extensions import override
 
 import file_keeper as fk
@@ -45,6 +46,8 @@ class Settings(fk.Settings):
     """Additional configuration for the S3 client. See botocore.config.Config for details."""
     adapter_version: str = "v2"
     """Version of the adapter implementation."""
+    multipart_threshold: int = 8 * 1024**2
+    """Threshold for multipart uploads. Files larger than this size will be uploaded in multiple parts."""
 
     _required_options: ClassVar[list[str]] = ["bucket"]
 
@@ -177,6 +180,7 @@ class Uploader(fk.Uploader):
                 Key=filepath,
                 Fileobj=fk.IterableBytesReader(upload.stream),  # pyright: ignore[reportArgumentType]
                 ExtraArgs=extra,
+                Config=TransferConfig(multipart_threshold=self.storage.settings.multipart_threshold),
             )
 
         return self.storage.analyze(location)
@@ -411,7 +415,13 @@ class Manager(fk.Manager):
             if algorithm != "MD5":
                 extra.update({"ChecksumAlgorithm": algorithm})
 
-            client.copy(Bucket=bucket, CopySource={"Bucket": bucket, "Key": old_key}, Key=new_key, ExtraArgs=extra)
+            client.copy(
+                Bucket=bucket,
+                CopySource={"Bucket": bucket, "Key": old_key},
+                Key=new_key,
+                ExtraArgs=extra,
+                Config=TransferConfig(multipart_threshold=self.storage.settings.multipart_threshold),
+            )
 
         return self.analyze(location, extras)
 
