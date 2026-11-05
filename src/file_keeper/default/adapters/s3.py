@@ -433,10 +433,17 @@ class Manager(fk.Manager):
         filepath = self.storage.full_path(data.location)
         client = self.storage.settings.client
 
-        try:
-            client.get_object(Bucket=self.storage.settings.bucket, Key=filepath)
-        except client.exceptions.NoSuchKey:
-            return False
+        if self.storage.settings.adapter_version == "v1":
+            try:
+                client.get_object(Bucket=self.storage.settings.bucket, Key=filepath)
+            except client.exceptions.NoSuchKey:
+                return False
+
+        else:
+            try:
+                client.head_object(Bucket=self.storage.settings.bucket, Key=filepath)
+            except client.exceptions.ClientError:
+                return False
 
         return True
 
