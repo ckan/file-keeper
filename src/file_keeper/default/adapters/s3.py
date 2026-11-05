@@ -17,7 +17,9 @@ import file_keeper as fk
 
 if TYPE_CHECKING:
     from mypy_boto3_s3 import S3Client
+    from mypy_boto3_s3.literals import ChecksumAlgorithmType
     from mypy_boto3_s3.type_defs import CreateMultipartUploadRequestTypeDef
+
 
 RE_RANGE = re.compile(r"bytes=(?P<first_byte>\d+)-(?P<last_byte>\d+)")
 HTTP_RESUME = 308
@@ -159,11 +161,22 @@ class Uploader(fk.Uploader):
                 ContentType=upload.content_type,
             )
         else:
+            extra = {
+                "ContentType": upload.content_type,
+            }
+            algorithm = self.storage.settings.hashing_algorithm.upper()
+            if algorithm != "MD5":
+                extra.update({"ChecksumAlgorithm": algorithm})
+
+            if algorithm in ["CRC32", "CRC32C", "CRC64NVME"]:
+                # use it to avoid hash-of-hashes for multipart
+                extra.update({"ChecksumType": "FULL_OBJECT"})
+
             client.upload_fileobj(
                 Bucket=self.storage.settings.bucket,
                 Key=filepath,
                 Fileobj=fk.IterableBytesReader(upload.stream),  # pyright: ignore[reportArgumentType]
-                ExtraArgs={"ContentType": upload.content_type},
+                ExtraArgs=extra,
             )
 
         return self.storage.analyze(location)
@@ -191,6 +204,17 @@ class Uploader(fk.Uploader):
         }
         if content_type := extras.get("content_type"):
             params["ContentType"] = content_type
+
+        if self.storage.settings.adapter_version == "v1":
+            pass
+        else:
+            algorithm: ChecksumAlgorithmType = self.storage.settings.hashing_algorithm.upper()  # pyright: ignore[reportAssignmentType]
+            if algorithm != "MD5":
+                params.update({"ChecksumAlgorithm": algorithm})
+
+            if algorithm in ["CRC32", "CRC32C", "CRC64NVME"]:
+                # use it to avoid hash-of-hashes for multipart
+                params.update({"ChecksumType": "FULL_OBJECT"})
 
         obj = client.create_multipart_upload(**params)
 
@@ -282,12 +306,21 @@ class Uploader(fk.Uploader):
             msg = "Only the final part can be smaller than 5MiB"
             raise fk.exc.MultipartUploadError(msg)
 
+        extra = {}
+        if self.storage.settings.adapter_version == "v1":
+            pass
+        else:
+            algorithm: ChecksumAlgorithmType = self.storage.settings.hashing_algorithm.upper()  # pyright: ignore[reportAssignmentType]
+            if algorithm != "MD5":
+                extra.update({"ChecksumAlgorithm": algorithm})
+
         resp = self.storage.settings.client.upload_part(
             Bucket=self.storage.settings.bucket,
             Key=filepath,
             UploadId=data.storage_data["upload_id"],
             PartNumber=part + 1,
             Body=upload.stream,  # pyright: ignore[reportArgumentType]
+            **extra,
         )
 
         etag = resp["ETag"].strip('"')
@@ -304,7 +337,7 @@ class Uploader(fk.Uploader):
         if data.size != data.storage_data["uploaded"]:
             raise fk.exc.UploadSizeMismatchError(data.storage_data["uploaded"], data.size)
 
-        result = self.storage.settings.client.complete_multipart_upload(
+        self.storage.settings.client.complete_multipart_upload(
             Bucket=self.storage.settings.bucket,
             Key=filepath,
             UploadId=data.storage_data["upload_id"],
@@ -313,20 +346,7 @@ class Uploader(fk.Uploader):
             },
         )
 
-        obj = self.storage.settings.client.get_object(Bucket=self.storage.settings.bucket, Key=result["Key"])
-
-        return fk.FileData(
-            fk.types.Location(
-                os.path.relpath(
-                    result["Key"],
-                    self.storage.settings.path,
-                )
-            ),
-            size=obj["ContentLength"],
-            content_type=obj["ContentType"],
-            hash=obj["ETag"].strip('"'),
-            algorithm="md5",
-        )
+        return self.storage.analyze(data.location)
 
 
 class Manager(fk.Manager):
@@ -386,7 +406,12 @@ class Manager(fk.Manager):
         if self.storage.settings.adapter_version == "v1":
             client.copy_object(Bucket=bucket, CopySource={"Bucket": bucket, "Key": old_key}, Key=new_key)
         else:
-            client.copy(Bucket=bucket, CopySource={"Bucket": bucket, "Key": old_key}, Key=new_key)
+            extra = {}
+            algorithm: ChecksumAlgorithmType = self.storage.settings.hashing_algorithm.upper()  # pyright: ignore[reportAssignmentType]
+            if algorithm != "MD5":
+                extra.update({"ChecksumAlgorithm": algorithm})
+
+            client.copy(Bucket=bucket, CopySource={"Bucket": bucket, "Key": old_key}, Key=new_key, ExtraArgs=extra)
 
         return self.analyze(location, extras)
 
@@ -471,18 +496,30 @@ class Manager(fk.Manager):
                 obj = client.get_object(Bucket=self.storage.settings.bucket, Key=filepath)
             except client.exceptions.NoSuchKey as err:
                 raise fk.exc.MissingFileError(self.storage, filepath) from err
+            checksum = obj["ETag"].strip('"')
+            algorithm = "md5"
+
         else:
             try:
-                obj = client.head_object(Bucket=self.storage.settings.bucket, Key=filepath)
+                obj = client.head_object(
+                    Bucket=self.storage.settings.bucket,
+                    Key=filepath,
+                    ChecksumMode="ENABLED",
+                )
             except client.exceptions.ClientError as err:
                 raise fk.exc.MissingFileError(self.storage, filepath) from err
+
+            algorithm = self.storage.settings.hashing_algorithm
+            if not (checksum := obj.get(f"Checksum{algorithm.upper()}")):
+                checksum = obj["ETag"].strip('"')
+                algorithm = "md5"
 
         return fk.FileData(
             location,
             size=obj["ContentLength"],
             content_type=obj["ContentType"],
-            hash=obj["ETag"].strip('"'),
-            algorithm="md5",
+            hash=checksum,
+            algorithm=algorithm,
         )
 
 

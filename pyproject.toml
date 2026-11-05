@@ -35,7 +35,7 @@ Changelog = "https://datashades.github.io/file-keeper/changelog/"
 
 [project.optional-dependencies]
 test = [
-     "pytest-cov", "pytest-faker", "faker", "werkzeug", "urllib3",
+     "pytest-cov", "pytest-faker", "faker", "werkzeug", "urllib3", "botocore[crt]",
 ]
 docs = [
      "mkdocs", "mkdocs-material", "pymdown-extensions", "mkdocstrings[python]", "mkdocs-spellcheck[codespell]", "mkdocs-macros-plugin",

@@ -74,4 +74,123 @@ class TestSettings:
 
 
 class TestStorage(standard.Standard):
-    pass
+    def test_create_hash_md5(self, storage: fk.Storage, faker: Faker):
+        """Storage can create an MD5 hash of the uploaded content."""
+        storage.settings.hashing_algorithm = "md5"
+        content = b"test content"
+        result = storage.upload(fk.Location(faker.file_name()), fk.make_upload(content))
+        assert result.hash == "9473fdd0d880a43c21b7778d34872157", "Uploaded file has wrong hash"
+
+        result = storage.upload(
+            fk.Location(faker.file_name()),
+            fk.make_upload(b"0" * 1024 * 1024 * 10),
+        )
+        # for files bigger than 8MB the hash is calculated as a hash-of-hashes
+        # and suffixed with number of parts
+        assert result.hash == "37789b909bf3cd1199703964ac04e9c5-2", "Multiparted file has wrong hash"
+
+    def test_create_hash_crc32(self, storage: fk.Storage, faker: Faker):
+        """Storage can create a CRC32 hash of the uploaded content."""
+        storage.settings.hashing_algorithm = "crc32"
+        content = b"test content"
+        result = storage.upload(fk.Location(faker.file_name()), fk.make_upload(content))
+        assert result.hash == "V/RnXQ==", "Uploaded file has wrong hash"
+
+        result = storage.upload(
+            fk.Location(faker.file_name()),
+            fk.make_upload(b"0" * 1024 * 1024 * 10),
+        )
+        # CRC* algorithms are computed for FULL_OBJECT
+        assert result.hash == "bsz5YQ==", "Multiparted file has wrong hash"
+
+    def test_create_hash_crc32c(self, storage: fk.Storage, faker: Faker):
+        """Storage can create a CRC32C hash of the uploaded content."""
+        storage.settings.hashing_algorithm = "crc32c"
+        content = b"test content"
+        result = storage.upload(fk.Location(faker.file_name()), fk.make_upload(content))
+        assert result.hash == "GTCnBQ==", "Uploaded file has wrong hash"
+
+        result = storage.upload(
+            fk.Location(faker.file_name()),
+            fk.make_upload(b"0" * 1024 * 1024 * 10),
+        )
+        # CRC* algorithms are computed for FULL_OBJECT
+        assert result.hash == "uah/dg==", "Multiparted file has wrong hash"
+
+    def test_create_hash_crc64nvme(self, storage: fk.Storage, faker: Faker):
+        """Storage can create a CRC64NVME hash of the uploaded content."""
+        storage.settings.hashing_algorithm = "crc64nvme"
+        content = b"test content"
+        result = storage.upload(fk.Location(faker.file_name()), fk.make_upload(content))
+        assert result.hash == "Z9s8rhTbnlM=", "Uploaded file has wrong hash"
+
+        result = storage.upload(
+            fk.Location(faker.file_name()),
+            fk.make_upload(b"0" * 1024 * 1024 * 10),
+        )
+        # CRC* algorithms are computed for FULL_OBJECT
+        assert result.hash == "Naz0uXkYBPM=", "Multiparted file has wrong hash"
+
+    def test_create_hash_sha256(self, storage: fk.Storage, faker: Faker):
+        """Storage can create a SHA256 hash of the uploaded content."""
+        storage.settings.hashing_algorithm = "sha256"
+        content = b"test content"
+        result = storage.upload(fk.Location(faker.file_name()), fk.make_upload(content))
+        assert result.hash == "auinVVUgn9bEQVfArtgBbnY/9DWhnPGG92hjFAFD/3I=", "Uploaded file has wrong hash"
+
+        result = storage.upload(
+            fk.Location(faker.file_name()),
+            fk.make_upload(b"0" * 1024 * 1024 * 10),
+        )
+        # SHA* algorithms are computed as COMPOSED for multipart uploads
+        assert result.hash == "GF9NksQm+kfiSnfATwel6YpQv0lVjL0yZLPwkK+pBGw=-2", "Multiparted file has wrong hash"
+
+    def test_multipart_create_hash_md5(self, storage: fk.Storage, faker: Faker):
+        """Storage can create an MD5 hash of the uploaded content during multipart upload."""
+        storage.settings.hashing_algorithm = "md5"
+
+        first = fk.make_upload(b"0" * 1024 * 1024 * 5)
+        second = fk.make_upload(b"0" * 1024 * 1024 * 5)
+        data = storage.multipart_start(fk.Location(faker.file_name()), 1024**2 * 10)
+        data = storage.multipart_update(data, first, 0)
+        data = storage.multipart_update(data, second, 1)
+        data = storage.multipart_complete(data)
+
+        # multipart hash is calculated as a hash-of-hashes and suffixed with
+        # number of parts
+        assert data.hash == "272ada4522d2daacb1a41098a5ae8f63-2", "Multiparted file has wrong hash"
+
+    def test_multipart_create_hash_crc64nvme(self, storage: fk.Storage, faker: Faker):
+        """Storage can create a CRC64NVME hash of the uploaded content during multipart upload."""
+        storage.settings.hashing_algorithm = "crc64nvme"
+
+        first = fk.make_upload(b"0" * 1024 * 1024 * 5)
+        second = fk.make_upload(b"0" * 1024 * 1024 * 5)
+        data = storage.multipart_start(fk.Location(faker.file_name()), 1024**2 * 10)
+        data = storage.multipart_update(data, first, 0)
+        data = storage.multipart_update(data, second, 1)
+        data = storage.multipart_complete(data)
+
+        # CRC* algorithms are computed for FULL_OBJECT
+        assert data.hash == "Naz0uXkYBPM=", "Multiparted file has wrong hash"
+
+    def test_copy_hash_md5(self, storage: fk.Storage, faker: Faker):
+        """Storage can create an MD5 hash of the copied content."""
+        storage.settings.hashing_algorithm = "md5"
+
+        data = storage.upload(
+            fk.Location(faker.file_name()),
+            fk.make_upload(b"0" * 1024 * 1024 * 10),
+        )
+        result = storage.copy(fk.Location(faker.file_name()), data)
+        assert result.hash == "37789b909bf3cd1199703964ac04e9c5-2", "Copied file has wrong hash"
+
+    def test_copy_hash_crc64nvme(self, storage: fk.Storage, faker: Faker):
+        """Storage can create a CRC64NVME hash of the copied content."""
+        storage.settings.hashing_algorithm = "crc64nvme"
+        data = storage.upload(
+            fk.Location(faker.file_name()),
+            fk.make_upload(b"0" * 1024 * 1024 * 10),
+        )
+        result = storage.copy(fk.Location(faker.file_name()), data)
+        assert result.hash == "Naz0uXkYBPM=", "Copied file has wrong hash"
