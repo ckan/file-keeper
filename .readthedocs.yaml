@@ -7,7 +7,7 @@ build:
   commands:
     # 1. Update pip and install Zensical along with python extensions
     - python -m pip install --upgrade pip
-    - pip install zensical mkdocstrings-python
+    - pip install zensical mkdocstrings-python -e.
 
     # 2. Build your documentation static files using Zensical
     - zensical build
