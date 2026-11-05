@@ -1,139 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://datashades.github.io/file-keeper/</loc>
+         <loc>https://ckan.github.io/file-keeper/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/api/</loc>
+         <loc>https://ckan.github.io/file-keeper/api/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/changelog/</loc>
+         <loc>https://ckan.github.io/file-keeper/changelog/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/configuration/</loc>
+         <loc>https://ckan.github.io/file-keeper/configuration/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/error_handling/</loc>
+         <loc>https://ckan.github.io/file-keeper/error_handling/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/faq/</loc>
+         <loc>https://ckan.github.io/file-keeper/faq/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/glossary/</loc>
+         <loc>https://ckan.github.io/file-keeper/glossary/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/migration_guide/</loc>
+         <loc>https://ckan.github.io/file-keeper/migration_guide/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/quick_reference/</loc>
+         <loc>https://ckan.github.io/file-keeper/quick_reference/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/testing/</loc>
+         <loc>https://ckan.github.io/file-keeper/testing/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/azure_blob/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/azure_blob/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/emulate/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/emulate/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/fs/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/fs/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/fsspec/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/fsspec/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/gcs/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/gcs/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/libcloud/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/libcloud/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/memory/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/memory/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/null/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/null/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/obstore/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/obstore/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/opendal/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/opendal/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/redis/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/redis/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/s3/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/s3/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/sqlalchemy/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/sqlalchemy/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/adapters/zip/</loc>
+         <loc>https://ckan.github.io/file-keeper/adapters/zip/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/core_concepts/</loc>
+         <loc>https://ckan.github.io/file-keeper/core_concepts/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/core_concepts/capabilities/</loc>
+         <loc>https://ckan.github.io/file-keeper/core_concepts/capabilities/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/core_concepts/data_model/</loc>
+         <loc>https://ckan.github.io/file-keeper/core_concepts/data_model/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/core_concepts/uploads/</loc>
+         <loc>https://ckan.github.io/file-keeper/core_concepts/uploads/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/extending/adapters/</loc>
+         <loc>https://ckan.github.io/file-keeper/extending/adapters/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/extending/dissection/</loc>
+         <loc>https://ckan.github.io/file-keeper/extending/dissection/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/extending/location_transformers/</loc>
+         <loc>https://ckan.github.io/file-keeper/extending/location_transformers/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/extending/overview/</loc>
+         <loc>https://ckan.github.io/file-keeper/extending/overview/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/tutorials/advanced_patterns/</loc>
+         <loc>https://ckan.github.io/file-keeper/tutorials/advanced_patterns/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
     <url>
-         <loc>https://datashades.github.io/file-keeper/tutorials/getting_started/</loc>
+         <loc>https://ckan.github.io/file-keeper/tutorials/getting_started/</loc>
          <lastmod>2026-11-05</lastmod>
     </url>
 </urlset>
