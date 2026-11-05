@@ -32,7 +32,7 @@ Storage = gcs.GoogleCloudStorage
 def storage(faker: Faker, storage_settings: dict[str, Any]):
     endpoint = os.getenv("FILE_KEEPER_TEST_GCS_ENDPOINT")
     if not endpoint:
-        pytest.skip("MinIO is not configured")
+        pytest.skip("Silo is not configured")
 
     settings: dict[str, Any] = {
         "name": "test",

@@ -547,7 +547,7 @@ class S3Storage(fk.Storage):
         "key": "<access key>",
         "secret": "<secret key>",
         "initialize": True,
-        ## uncomment following line to use MinIO on port 9000
+        ## uncomment following line to use Silo on port 9000
         # "endpoint": "http://127.0.0.1:9000/",
     }
     storage = fk.make_storage("s3", settings)
@@ -560,7 +560,7 @@ class S3Storage(fk.Storage):
       will be used.
     * The `path` option can be used to set a prefix within the bucket.
     * The `region` option can be used to set the AWS region for the bucket.
-    * The `endpoint` option can be used to set a custom endpoint, e.g. for MinIO.
+    * The `endpoint` option can be used to set a custom endpoint, e.g. for Silo.
     * The `overwrite_existing` option controls whether existing files can be overwritten.
     """
 

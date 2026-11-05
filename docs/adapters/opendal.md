@@ -25,7 +25,7 @@ pip install opendal
 Here's an example of how to initialize the OpenDAL adapter:
 
 
-/// tab | MinIO
+/// tab | Silo
 
 ```py
 storage = make_storage("my_opendal_storage", {

@@ -42,7 +42,7 @@ storage = make_storage("my_libcloud_storage", {
 
 ///
 
-/// tab | MinIO
+/// tab | Silo
 
 ```python
 

@@ -23,6 +23,17 @@ jobs:
         ports:
           - 10000:10000
         command: azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0 --skipApiVersionCheck
+      minio:
+        image: pgsty/silo:latest
+        ports:
+          - 9000:9000
+          - 9001:9001
+        env:
+          MINIO_ACCESS_KEY: minioadmin
+          MINIO_SECRET_KEY: minioadmin
+        options: >-
+          server /data
+          --console-address ":9001"
 
     strategy:
       fail-fast: false
@@ -57,14 +68,6 @@ jobs:
         with:
           version: "1.52.2"
           scheme: http
-
-      - name: Start MinIO
-        uses: infleet/minio-action@v0.0.2
-        with:
-          port: "9000"
-          version: "latest"
-          username: "minioadmin"
-          password: "minioadmin"
 
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v7

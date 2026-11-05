@@ -7,13 +7,13 @@ incurring costs or requiring access to real cloud resources.
 Remember to adjust the port mappings and environment variables as needed for
 your specific setup.
 
-/// tab | MinIO (S3-compatible)
+/// tab | Silo (S3-compatible)
 
 ```sh
 docker run -d -p 9000:9000 -p 9001:9001 \
-    --name minio \
+    --name silo \
     -e MINIO_PUBLIC_ADDRESS=0.0.0.0:9000 \
-    quay.io/minio/minio server /data --console-address ":9001"
+    docker.io/pgsty/silo server /data --console-address ":9001"
 ```
 
 | Attribute | Value                 |
