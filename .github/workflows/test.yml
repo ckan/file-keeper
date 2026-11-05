@@ -24,16 +24,13 @@ jobs:
           - 10000:10000
         command: azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0 --skipApiVersionCheck
       minio:
-        image: pgsty/silo:latest
+        image: docker.io/pgsty/silo:latest
         ports:
           - 9000:9000
           - 9001:9001
         env:
-          MINIO_ACCESS_KEY: minioadmin
-          MINIO_SECRET_KEY: minioadmin
-        options: >-
-          server /data
-          --console-address ":9001"
+          MINIO_ROOT_USER: minioadmin
+          MINIO_ROOT_PASSWORD: minioadmin
 
     strategy:
       fail-fast: false
