@@ -30,8 +30,8 @@ content-type = "text/markdown"
 
 [project.urls]
 Homepage = "https://github.com/ckan/file-keeper"
-Documentation = "https://ckan.github.io/file-keeper/"
-Changelog = "https://ckan.github.io/file-keeper/changelog/"
+Documentation = "https://file-keeper.readthedocs.io/"
+Changelog = "https://file-keeper.readthedocs.io/en/latest/changelog/"
 
 [project.optional-dependencies]
 test = [

@@ -1,5 +1,5 @@
 site_name: file-keeper
-site_url: https://ckan.github.io/file-keeper/
+site_url: https://file-keeper.readthedocs.io/
 repo_url:  https://github.com/ckan/file-keeper
 
 markdown_extensions:

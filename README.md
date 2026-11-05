@@ -8,7 +8,7 @@ The package implements drivers for a number of storage types(local filesystem,
 redis, AWS S3, etc.) and defines a set of tools to simplify building your own
 drivers for storage you are using.
 
-Read the [documentation](https://ckan.github.io/file-keeper/) for a full
+Read the [documentation](https://file-keeper.readthedocs.io/) for a full
 user guide.
 
 ## Features
